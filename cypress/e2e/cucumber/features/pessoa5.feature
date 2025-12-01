@@ -1,19 +1,23 @@
 # language: pt
-Funcionalidade: Serviços de Dívida Ativa da União - Gov.br
-  Descrição: Validar acessibilidade do serviço "Emitir Darf - dívida ativa da União"
+Funcionalidade: Serviços de Comunicação Governamental - Gov.br
+  Descrição: Validar acessibilidade do serviço "Comunicação Governamental" na categoria Comunicação Pública
 
-  Cenário: Acesso direto ao serviço Emitir Darf
+  Cenário: Validar acesso ao serviço Comunicação Governamental
     Dado que eu acesse a página inicial do Gov.br
-    Quando eu navegar até "Serviços"
-    E eu clicar em "Emitir Darf - dívida ativa da União"
-    Então devo visualizar o texto "Emitir Darf - dívida ativa da União"
+    Quando eu selecionar "Categorias"
+    E eu escolher "Comunicações e Transparência Pública"
+    E eu selecionar "Comunicação Pública"
+    E eu escolher "Comunicação Governamental"
+    Então devo visualizar o texto "Comunicação Governamental"
 
-  Esquema do Cenário: Navegação em serviços de Dívida Ativa
+  Esquema do Cenário: Validar serviços de Comunicação Pública
     Dado que eu acesse a página inicial do Gov.br
-    Quando eu navegar até "<menu>"
-    E eu clicar em "<servico>"
+    Quando eu selecionar "Categorias"
+    E eu escolher "Comunicações e Transparência Pública"
+    E eu selecionar "Comunicação Pública"
+    E eu escolher "<servico>"
     Então devo visualizar o texto "<resultado>"
 
     Exemplos:
-      | menu      | servico                                | resultado                             |
-      | Serviços  | Emitir Darf - dívida ativa da União    | Emitir Darf - dívida ativa da União   |
+      | servico                 | resultado               |
+      | Comunicação Governamental | Comunicação Governamental |

@@ -2,30 +2,25 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 
 Cypress.on("uncaught:exception", () => false);
+Cypress.config("defaultCommandTimeout", 20000);
 
-Given("que eu acesse a página Finanças, Impostos e Gestão Pública", () => {
-    cy.visit(
-        "https://www.gov.br/pt-br/categorias/financas-impostos-e-gestao-publica"
-    );
+Given("que eu acesse a página inicial do Gov.br", () => {
+    cy.visit("https://www.gov.br/pt-br");
+    cy.title().should("eq", "GOV.BR");
 });
 
-When("eu selecionar {string}", (subcategoria) => {
-    cy.contains(subcategoria, { timeout: 10000 })
+When("eu selecionar {string}", (menu) => {
+    cy.contains(new RegExp(menu, "i"), { timeout: 15000 })
         .scrollIntoView()
         .click({ force: true });
 });
 
-When("eu escolher {string}", (perfil) => {
-    cy.contains(perfil, { timeout: 10000 })
+When("eu escolher {string}", (servico) => {
+    cy.contains(new RegExp(servico, "i"), { timeout: 15000 })
         .scrollIntoView()
         .click({ force: true });
 });
 
-Then("devo visualizar o texto {string}", (texto) => {
-    cy.contains(texto, { timeout: 10000 }).should("be.visible");
+Then("devo visualizar o texto {string}", (resultado) => {
+    cy.contains(new RegExp(resultado, "i"), { timeout: 15000 }).should("be.visible");
 });
-
-Then("devo visualizar o serviço {string}", (servico) => {
-    cy.contains("a.titulo", servico, { timeout: 10000 }).should("be.visible");
-});
-

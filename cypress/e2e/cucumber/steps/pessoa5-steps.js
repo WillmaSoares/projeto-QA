@@ -6,23 +6,21 @@ Cypress.config("defaultCommandTimeout", 20000);
 
 Given("que eu acesse a página inicial do Gov.br", () => {
     cy.visit("https://www.gov.br/pt-br");
-    cy.title().should((titulo) => {
-        expect(titulo.toLowerCase()).to.include("gov.br");
-    });
+    cy.title().should("eq", "GOV.BR");
 });
 
 When("eu selecionar {string}", (menu) => {
-    cy.contains("a", menu, { matchCase: false, timeout: 15000 })
+    cy.contains(new RegExp(menu, "i"), { timeout: 15000 })
         .scrollIntoView()
         .click({ force: true });
 });
 
 When("eu escolher {string}", (servico) => {
-    cy.contains("a", servico, { matchCase: false, timeout: 15000 })
+    cy.contains(new RegExp(servico, "i"), { timeout: 15000 })
         .scrollIntoView()
         .click({ force: true });
 });
 
 Then("devo visualizar o texto {string}", (resultado) => {
-    cy.contains(resultado, { timeout: 15000 }).should("be.visible");
+    cy.contains(new RegExp(resultado, "i"), { timeout: 15000 }).should("be.visible");
 });
